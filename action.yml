@@ -1,21 +1,27 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Upload Code to EsoUI'
+description: 'Upload Code to EsoUI'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  path:
+    description: 'Path of the files (folder name)'
     required: true
-    default: 'World'
+    default: './'
+  readme:
+    description: 'Path of the readme file (not including folder path)'
+    required: false
+    default: 'README.md'
+  changelog:
+    description: 'Path of the changelog file (not including folder path)'
+    required: false
+    default: 'changelog.txt'
   EsoUIToken:
     description: 'Token from EsoUI'
     required: true
-    default: ''
   EsoUIID:
     description: 'ID from EsoUI'
     required: true
-    default: ''
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  version:
+    description: 'Version of the addon'
+    required: true
 runs:
   using: 'node12'
   main: 'index.js'

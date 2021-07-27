@@ -4,19 +4,16 @@ const http = require('https');
 const fs = require('fs')
 
 try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  const time = (new Date()).toTimeString();
-  core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  //const payload = JSON.stringify(github.context.payload, undefined, 2)
-  // console.log(`The event payload: ${payload}`);
-  console.log("")
-  console.log("")
+  const path = core.getInput('path');
+  //const manifestPath = `${path}${core.getInput('addonManifest')}`
+  const readmePath = `${path}${core.getInput('readme')}`
+  const changelogPath = `${path}${core.getInput('changelog')}`
   const apiToken = core.getInput('EsoUIToken');
   const id = core.getInput('EsoUIID');
+  const version = core.getInput("version")
 
+
+  /*
   let options = {
     headers: {
       'x-api-token': apiToken
@@ -26,16 +23,17 @@ try {
     console.log(res)
     console.log(res[0].version)
   })
+  */
 
 
-  const fs = require('fs')
-
-  try {
-    const data = fs.readFileSync('./ArtaeumGroupTool/README.md', 'utf8')
-    console.log(replaceMD(data))
-  } catch (err) {
-    console.error(err)
-  }
+  readFile(readmePath, (readme) => {
+    outputDescription = replaceMD(readme)
+    readFile(changelogPath, (outputChangelog) => {
+      console.log(outputDescription)
+      console.log(outputChangelog)
+      console.log(version)
+    })
+  })
   
 
 
@@ -66,6 +64,14 @@ function get(url, options, callback) {
   })
 }
 
+
+function readFile(path, callback) {
+  try {
+    callback(fs.readFileSync(path, 'utf8'))
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 
 function replaceMD(text) {
