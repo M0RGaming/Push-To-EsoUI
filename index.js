@@ -17,16 +17,16 @@ try {
 
 
   let options = {
-    method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
       'x-api-token': apiToken
     }
   }
 
-  req = http.request('https://api.esoui.com/addons/list.json', options, (res) => {
+  http.get('https://api.esoui.com/addons/list.json', options, (res) => {
     console.log(JSON.stringify(res))
   })
+
+
 
 
 
