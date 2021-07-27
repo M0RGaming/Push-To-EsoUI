@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const http = require('http');
+const http = require('https');
 
 try {
   // `who-to-greet` input defined in action metadata file
