@@ -48,7 +48,7 @@ try {
         method: 'post',
         host: 'https://api.esoui.com',
         path: `/addons/updatetest`,
-        headers: {'x-api-token': esouiApiKey, ...data.getHeaders()}
+        headers: {'x-api-token': apiToken, ...data.getHeaders()}
       });
 
       form.pipe(request);
