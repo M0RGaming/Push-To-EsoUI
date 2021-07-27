@@ -18,7 +18,7 @@ try {
 
   let options = {
     headers: {
-      'x-api-token': token
+      'x-api-token': apiToken
     }
   }
   get(`https://api.esoui.com/addons/details/${id}.json`, options, (res) => {
