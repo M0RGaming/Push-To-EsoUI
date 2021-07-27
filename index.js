@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const http = require('https');
 const fs = require('fs')
-const form = require('form-data');
+const FormData = require('form-data');
 
 try {
   const path = core.getInput('path');
