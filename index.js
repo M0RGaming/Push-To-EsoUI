@@ -31,9 +31,11 @@ try {
   readFile(readmePath, (readme) => {
     outputDescription = replaceMD(readme)
     readFile(changelogPath, (outputChangelog) => {
+      /*
       console.log(outputDescription)
       console.log(outputChangelog)
       console.log(version)
+      */
       let data = new FormData();
       data.append('id', +id);
       data.append('version', `${version}`);
