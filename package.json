@@ -1,0 +1,24 @@
+{
+  "name": "pushtoesoui",
+  "version": "1.0.0",
+  "description": "A github action to push to EsoUI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/M0RGaming/Push-To-EsoUI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/M0RGaming/Push-To-EsoUI/issues"
+  },
+  "homepage": "https://github.com/M0RGaming/Push-To-EsoUI#readme",
+  "dependencies": {
+    "@actions/core": "^1.4.0",
+    "@actions/github": "^5.0.0"
+  }
+}
