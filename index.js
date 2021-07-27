@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const http = require('https');
+const fs = require('fs')
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -23,7 +24,18 @@ try {
   }
   get(`https://api.esoui.com/addons/details/${id}.json`, options, (res) => {
     console.log(res)
+    console.log(res[0].version)
   })
+
+
+  const fs = require('fs')
+
+  try {
+    const data = fs.readFileSync('./ArtaeumGroupTool/README.md', 'utf8')
+    console.log(replaceMD(data))
+  } catch (err) {
+    console.error(err)
+  }
   
 
 
@@ -52,4 +64,15 @@ function get(url, options, callback) {
       }
     });
   })
+}
+
+
+
+function replaceMD(text) {
+  text = text.replace(/^# (.*?)\n/gm,'[SIZE=5]$1[/SIZE]')
+  text = text.replace(/^## (.*?)\n/gm,'[SIZE=4]$1[/SIZE]')
+  text = text.replace(/^### (.*?)\n/gm,'[SIZE=3]$1[/SIZE]')
+  text = text.replace(/`((?!`).*?)`/gm,'[Highlight]$1[/Highlight]')
+  text = text.replace(/```(.*?)```/gm,'[Highlight=lua]$1[/Highlight]')
+  return text
 }
