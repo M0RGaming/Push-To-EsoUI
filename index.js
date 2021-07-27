@@ -51,7 +51,7 @@ try {
         headers: {'x-api-token': apiToken, ...data.getHeaders()}
       });
 
-      form.pipe(request);
+      data.pipe(request);
 
       request.on('response', function(res) {
         console.log(res.statusCode);
