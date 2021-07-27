@@ -15,14 +15,29 @@ try {
   console.log("")
   const apiToken = core.getInput('EsoUIToken');
 
+  get('https://api.esoui.com/addons/list.json', apiToken, (res) => {
+    console.log(res)
+  })
+  
 
+
+
+
+
+} catch (error) {
+  core.setFailed(error.message);
+}
+
+
+
+function get(url, token, callback) {
   let options = {
     headers: {
-      'x-api-token': apiToken
+      'x-api-token': token
     }
   }
 
-  http.get('https://api.esoui.com/addons/list.json', options, (res) => {
+  http.get(url, options, (res) => {
     console.log(`STATUS: ${res.statusCode}`);
     console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
     res.setEncoding('utf8');
@@ -31,17 +46,11 @@ try {
     res.on('end', () => {
       try {
         const parsedData = JSON.parse(rawData);
-        console.log(parsedData);
+        //console.log(parsedData);
+        callback(parsedData)
       } catch (e) {
         console.error(e.message);
       }
     });
   })
-
-
-
-
-
-} catch (error) {
-  core.setFailed(error.message);
 }
