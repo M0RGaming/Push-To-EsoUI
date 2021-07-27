@@ -2,6 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const http = require('https');
 const fs = require('fs')
+const form = require('form-data');
 
 try {
   const path = core.getInput('path');
@@ -11,6 +12,7 @@ try {
   const apiToken = core.getInput('EsoUIToken');
   const id = core.getInput('EsoUIID');
   const version = core.getInput("version")
+  const artifact = core.getInput("artifact")
 
 
   /*
@@ -32,6 +34,26 @@ try {
       console.log(outputDescription)
       console.log(outputChangelog)
       console.log(version)
+      let data = new FormData();
+      data.append('id', +id);
+      data.append('version', `${version}`);
+      data.append('description', outputDescription)
+      data.append('changelog', outputChangelog)
+      data.append('updatefile', fs.createReadStream(artifact));
+
+
+      var request = http.request({
+        method: 'post',
+        host: 'https://api.esoui.com',
+        path: `/addons/updatetest`,
+        headers: {'x-api-token': esouiApiKey, ...data.getHeaders()}
+      });
+
+      form.pipe(request);
+
+      request.on('response', function(res) {
+        console.log(res.statusCode);
+      });
     })
   })
   

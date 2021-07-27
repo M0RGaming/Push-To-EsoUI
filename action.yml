@@ -22,6 +22,9 @@ inputs:
   version:
     description: 'Version of the addon'
     required: true
+  artifact:
+    description: 'Build Artifact to upload'
+    required: true
 runs:
   using: 'node12'
   main: 'index.js'
