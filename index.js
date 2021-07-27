@@ -14,8 +14,14 @@ try {
   console.log("")
   console.log("")
   const apiToken = core.getInput('EsoUIToken');
+  const id = core.getInput('EsoUIID');
 
-  get('https://api.esoui.com/addons/list.json', apiToken, (res) => {
+  let options = {
+    headers: {
+      'x-api-token': token
+    }
+  }
+  get(`https://api.esoui.com/addons/details/${id}.json`, options, (res) => {
     console.log(res)
   })
   
@@ -30,13 +36,7 @@ try {
 
 
 
-function get(url, token, callback) {
-  let options = {
-    headers: {
-      'x-api-token': token
-    }
-  }
-
+function get(url, options, callback) {
   http.get(url, options, (res) => {
     console.log(`STATUS: ${res.statusCode}`);
     console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
@@ -46,7 +46,6 @@ function get(url, token, callback) {
     res.on('end', () => {
       try {
         const parsedData = JSON.parse(rawData);
-        //console.log(parsedData);
         callback(parsedData)
       } catch (e) {
         console.error(e.message);

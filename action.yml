@@ -9,6 +9,10 @@ inputs:
     description: 'Token from EsoUI'
     required: true
     default: ''
+  EsoUIToken:
+    description: 'ID from EsoUI'
+    required: true
+    default: ''
 outputs:
   time: # id of output
     description: 'The time we greeted you'
