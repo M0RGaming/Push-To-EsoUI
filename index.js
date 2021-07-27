@@ -69,9 +69,9 @@ function get(url, options, callback) {
 
 
 function replaceMD(text) {
-  text = text.replace(/^# (.*?)\n/gm,'[SIZE=5]$1[/SIZE]')
-  text = text.replace(/^## (.*?)\n/gm,'[SIZE=4]$1[/SIZE]')
-  text = text.replace(/^### (.*?)\n/gm,'[SIZE=3]$1[/SIZE]')
+  text = text.replace(/^# (.*?)\n/gm,'[SIZE=5]$1[/SIZE]\n')
+  text = text.replace(/^## (.*?)\n/gm,'[SIZE=4]$1[/SIZE]\n')
+  text = text.replace(/^### (.*?)\n/gm,'[SIZE=3]$1[/SIZE]\n')
   text = text.replace(/`((?!`).*?)`/gm,'[Highlight]$1[/Highlight]')
   text = text.replace(/```(.*?)```/gm,'[Highlight=lua]$1[/Highlight]')
   return text
