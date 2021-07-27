@@ -26,11 +26,15 @@ try {
     console.log(`STATUS: ${res.statusCode}`);
     console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
     res.setEncoding('utf8');
-    res.on('data', (chunk) => {
-      console.log(`BODY: ${chunk}`);
-    });
+    let rawData = '';
+    res.on('data', (chunk) => { rawData += chunk; });
     res.on('end', () => {
-      console.log('No more data in response.');
+      try {
+        const parsedData = JSON.parse(rawData);
+        console.log(parsedData);
+      } catch (e) {
+        console.error(e.message);
+      }
     });
   })
 
