@@ -9,7 +9,7 @@ inputs:
     description: 'Token from EsoUI'
     required: true
     default: ''
-  EsoUIToken:
+  EsoUIID:
     description: 'ID from EsoUI'
     required: true
     default: ''
