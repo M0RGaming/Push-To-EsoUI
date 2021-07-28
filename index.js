@@ -44,7 +44,7 @@ try {
       data.append('updatefile', fs.createReadStream(artifact));
 
 
-      var request = http.request('https://api.esoui.com/addons/updatetest', {
+      var request = http.request('https://api.esoui.com/addons/update', {
         method: 'post',
         headers: {'x-api-token': apiToken, ...data.getHeaders()}
       });
