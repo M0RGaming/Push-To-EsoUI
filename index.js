@@ -53,6 +53,7 @@ try {
 
       request.on('response', function(res) {
         console.log(res.statusCode);
+        process.exit(0);
       });
     })
   })
